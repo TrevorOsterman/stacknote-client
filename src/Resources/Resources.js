@@ -26,6 +26,14 @@ export default class Resources extends React.Component {
             <b>Email:</b> fake@dummy.com
           </span>
         </div>
+        <div className="links">
+          <h2>Helpful Links:</h2>
+          <ul className="links-list">
+            <li>https://github.com</li>
+            <li>https://developer.mozilla.org/en-US/</li>
+            <li>https://css-tricks.com/</li>
+          </ul>
+        </div>
       </div>
     );
   }

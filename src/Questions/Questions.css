@@ -1,6 +1,5 @@
 .questions-list {
   padding: 0 10%;
-  width: 50%;
 }
 
 .question {
@@ -9,11 +8,6 @@
 
 .preguntas {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-}
-
-.query {
-  width: 100%;
-  flex-basis: 400px;
 }

@@ -8,6 +8,7 @@ import Notes from "./Notes/Notes";
 import Lander from "./Lander/Lander";
 import Questions from "./Questions/Questions";
 import Resources from "./Resources/Resources";
+import Login from "./Login/Login";
 
 class App extends React.Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class App extends React.Component {
         <Route path="/notes" component={Notes} />
         <Route path="/questions" component={Questions} />
         <Route path="/resources" component={Resources} />
+        <Route path="/login" component={Login} />
       </div>
     );
   }

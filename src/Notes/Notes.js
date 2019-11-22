@@ -21,7 +21,9 @@ export default class Notes extends React.Component {
             <li className="note">Note 1 content</li>
             <li className="note">Note 2 content</li>
           </ul>
-          <span className="add-new">+ add new section</span>
+          <span className="add-new">
+            <b>+ add new section</b>
+          </span>
         </ul>
       </div>
     );

@@ -15,10 +15,11 @@ export default class Questions extends React.Component {
           <li className="question">
             How do you make a full stack application?
           </li>
+          <li className="new-question">
+            <input type="text" />
+            <button>Add</button>
+          </li>
         </ul>
-        <form>
-          <textarea className="query" rows="15" cols="75"></textarea>
-        </form>
       </div>
     );
   }
