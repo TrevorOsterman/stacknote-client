@@ -1,0 +1,12 @@
+.resources-section {
+  padding: 0 25px;
+}
+
+.pm-info,
+.mentor-info {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  margin: 15px 0;
+  font-size: 20px;
+}

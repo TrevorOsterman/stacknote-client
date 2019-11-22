@@ -1,0 +1,16 @@
+.note-nav {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 5%;
+  margin: 0;
+}
+
+.note-type {
+  font-size: 20px;
+}
+
+.note-type:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

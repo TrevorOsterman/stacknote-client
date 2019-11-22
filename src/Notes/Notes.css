@@ -1,0 +1,14 @@
+.note-headers {
+  padding: 0 5%;
+}
+
+.note-header {
+  padding: 10px 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.note {
+  font-size: 18px;
+  font-weight: lighter;
+}
