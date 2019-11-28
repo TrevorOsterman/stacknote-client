@@ -8,20 +8,16 @@ export default class NotesList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: {
-        frontEnd: [
-          {
-            header: "Fundamentals",
-            list: ["Item 1", "Item 2"],
-            clicked: false
-          }
-        ]
+      newSection: {
+        name: "",
+        clicked: false
       }
     };
   }
 
   render() {
-    const notesList = this.state.notes.frontEnd;
+    const activeTab = this.context.activeTab.key;
+    const notesList = this.context.notes[activeTab];
 
     return (
       <div className="note-headers">
@@ -32,9 +28,15 @@ export default class NotesList extends React.Component {
               {cat.list.map(i => {
                 return <li className="note">{i}</li>;
               })}
+              <li>
+                <input type="text" placeholder="new note" />
+              </li>
             </ul>
           );
         })}
+        <span>
+          <b>+ Create new section</b>
+        </span>
       </div>
     );
   }

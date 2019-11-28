@@ -14,7 +14,36 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: { name: "Front-End", key: 0 }
+      activeTab: { name: "Front-End", key: 0 },
+      notes: [
+        [
+          { header: "Fundamentals", list: ["Item 1", "Item 2"], clicked: false }
+        ],
+        [
+          {
+            header: "Node.js",
+            list: ["Item 1", "Item 2"],
+            clicked: false
+          }
+        ],
+        [
+          {
+            header: "DBeaver",
+            list: ["Blah", "Bleh"],
+            clicked: false
+          }
+        ],
+        [
+          {
+            header: "Oh my god",
+            list: [
+              "Please be the right way of doing this",
+              "Oh god I hope this is right"
+            ],
+            clicked: false
+          }
+        ]
+      ]
     };
   }
 
