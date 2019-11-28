@@ -7,11 +7,11 @@ export default class NoteNav extends React.Component {
   render(props) {
     return (
       <ul className="note-nav">
-        {["Front-End", "Back-End", "Database", "Misc."].map(tab => {
+        {["Front-End", "Back-End", "Database", "Misc."].map((tab, idx) => {
           return (
             <li
               className="note-type"
-              onClick={() => this.context.handleActiveTab(tab)}
+              onClick={() => this.context.handleActiveTab(tab, idx)}
             >
               {tab}
             </li>

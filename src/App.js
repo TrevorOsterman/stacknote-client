@@ -14,18 +14,19 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: "frontEnd"
+      activeTab: { name: "Front-End", key: 0 }
     };
   }
 
-  handleActiveTab = tab => {
-    this.setState({ activeTab: tab });
+  handleActiveTab = (tab, idx) => {
+    this.setState({ activeTab: { name: tab, key: idx } });
   };
 
   render() {
     const value = {
       notes: this.state.notes,
-      handleActiveTab: this.handleActiveTab
+      handleActiveTab: this.handleActiveTab,
+      activeTab: this.state.activeTab
     };
     return (
       <div className="App">
