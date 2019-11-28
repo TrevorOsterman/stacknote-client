@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import "./App.css";
 import Nav from "./Nav/Nav";
 import Logo from "./Logo/Logo";
-import NoteNav from "./NoteNav/NoteNav";
 import Notes from "./Notes/Notes";
 import Lander from "./Lander/Lander";
 import Questions from "./Questions/Questions";
@@ -34,7 +33,6 @@ class App extends React.Component {
         <Logo />
         <Context.Provider value={value}>
           <Route exact path="/" component={Lander} />
-          <Route path="/notes" component={NoteNav} />
           <Route path="/notes" component={Notes} />
           <Route path="/questions" component={Questions} />
           <Route path="/resources" component={Resources} />
