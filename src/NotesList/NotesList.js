@@ -1,37 +1,36 @@
 import React from "react";
 import "./NotesList.css";
 
-export default class Notes extends React.Component {
+export default class NotesList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: {}
+      activeTab: "",
+      notes: [
+        {
+          header: "Fundamentals",
+          list: ["Item 1", "Item 2"],
+          clicked: false
+        }
+      ]
     };
   }
 
   render() {
+    const notesList = this.state.notes;
+
     return (
       <div className="note-headers">
-        <ul className="notes">
-          <ul className="note-header">
-            Fundementals
-            <li className="note">Note 1 content</li>
-            <li className="note">Note 2 content</li>
-          </ul>
-          <ul className="note-header">
-            React
-            <li className="note">Note 1 content</li>
-            <li className="note">Note 2 content</li>
-          </ul>
-          <ul className="note-header">
-            Heroku
-            <li className="note">Note 1 content</li>
-            <li className="note">Note 2 content</li>
-          </ul>
-          <span className="add-new">
-            <b>+ add new section</b>
-          </span>
-        </ul>
+        {notesList.map(cat => {
+          return (
+            <ul className="note-header">
+              {cat.header}
+              {cat.list.map(i => {
+                return <li className="note">{i}</li>;
+              })}
+            </ul>
+          );
+        })}
       </div>
     );
   }
