@@ -1,9 +1,11 @@
 .note-nav {
   list-style: none;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   padding: 0 5%;
   margin: 0;
+  flex-wrap: wrap;
 }
 
 .note-type {
@@ -13,4 +15,10 @@
 .note-type:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 600px) {
+  .note-nav {
+    flex-direction: row;
+  }
 }

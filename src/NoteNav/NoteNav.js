@@ -1,14 +1,22 @@
 import React from "react";
 import "./NoteNav.css";
+import Context from "../Context";
 
 export default class NoteNav extends React.Component {
-  render() {
+  static contextType = Context;
+  render(props) {
     return (
       <ul className="note-nav">
-        <li className="note-type">Front-End</li>
-        <li className="note-type">Back-End</li>
-        <li className="note-type">Database</li>
-        <li className="note-type">Misc.</li>
+        {["Front-End", "Back-End", "Database", "Misc."].map(tab => {
+          return (
+            <li
+              className="note-type"
+              onClick={() => this.context.handleActiveTab(tab)}
+            >
+              {tab}
+            </li>
+          );
+        })}
       </ul>
     );
   }
