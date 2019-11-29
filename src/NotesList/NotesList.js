@@ -16,8 +16,7 @@ export default class NotesList extends React.Component {
   }
 
   render() {
-    const activeTab = this.context.activeTab.key;
-    const notesList = this.context.notes[activeTab];
+    const notesList = Object.values(this.props.notes)[0];
 
     return (
       <div className="note-headers">

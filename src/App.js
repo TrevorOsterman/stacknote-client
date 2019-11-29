@@ -16,33 +16,38 @@ class App extends React.Component {
     this.state = {
       activeTab: { name: "Front-End", key: 0 },
       notes: [
-        [
-          { header: "Fundamentals", list: ["Item 1", "Item 2"], clicked: false }
-        ],
-        [
-          {
-            header: "Node.js",
-            list: ["Item 1", "Item 2"],
-            clicked: false
-          }
-        ],
-        [
-          {
-            header: "DBeaver",
-            list: ["Blah", "Bleh"],
-            clicked: false
-          }
-        ],
-        [
-          {
-            header: "Oh my god",
-            list: [
-              "Please be the right way of doing this",
-              "Oh god I hope this is right"
-            ],
-            clicked: false
-          }
-        ]
+        {
+          frontEnd: [
+            {
+              header: "Fundamentals",
+              list: ["Item 1", "Item 2"]
+            }
+          ]
+        },
+        {
+          backEnd: [
+            {
+              header: "Node.js",
+              list: ["Item 1", "Item 2"]
+            }
+          ]
+        },
+        {
+          database: [
+            {
+              header: "DBeaver",
+              list: ["Item 1", "Item 2"]
+            }
+          ]
+        },
+        {
+          misc: [
+            {
+              header: "AAAAAA",
+              list: ["AAAAAA"]
+            }
+          ]
+        }
       ]
     };
   }
