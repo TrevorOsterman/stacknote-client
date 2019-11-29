@@ -9,7 +9,7 @@ export default class Notes extends React.Component {
     return (
       <div className="notes-comp">
         <NoteNav />
-        <NotesList notes={this.context.notes[this.context.activeTab.key]} />
+        <NotesList />
       </div>
     );
   }
