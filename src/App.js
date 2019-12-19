@@ -9,56 +9,40 @@ import Questions from "./Questions/Questions";
 import Resources from "./Resources/Resources";
 import Login from "./Login/Login";
 import Context from "./Context";
+import config from "./config.js";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: { name: "frontEnd", key: 0 },
-      notes: {
-        frontEnd: [
-          {
-            header: "Fundamentals",
-            list: ["Item 1", "Item 2"]
-          },
-          {
-            header: "React",
-            list: ["Re", "Act"]
-          }
-        ],
-        backEnd: [
-          {
-            header: "Node.js",
-            list: ["Item 1", "Item 2"]
-          }
-        ],
-        database: [
-          {
-            header: "DBeaver",
-            list: ["Item 1", "Item 2"]
-          }
-        ],
-        misc: [
-          {
-            header: "AAAAAA",
-            list: ["AAAAAA"]
-          }
-        ]
+      notes: [],
+      activeTab: {
+        name: "",
+        key: 1
       }
     };
   }
 
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}/api/notes`, {
+      headers: {
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(res => {
+        this.setState({ notes: res });
+      });
+  }
+
   handleActiveTab = (tab, idx) => {
-    if (tab === "Front-End") {
-      this.setState({ activeTab: { name: "frontEnd", key: idx } });
-    } else if (tab === "Back-End") {
-      this.setState({ activeTab: { name: "backEnd", key: idx } });
-    } else if (tab === "Database") {
-      this.setState({ activeTab: { name: "database", key: idx } });
-    } else {
-      this.setState({ activeTab: { name: "misc", key: idx } });
-    }
-    // this.setState({ activeTab: { name: tab, key: idx } });
+    this.setState({ activeTab: { name: tab, key: idx + 1 } });
   };
 
   addNote = note => {
