@@ -9,57 +9,67 @@ import Questions from "./Questions/Questions";
 import Resources from "./Resources/Resources";
 import Login from "./Login/Login";
 import Context from "./Context";
+import config from "./config.js";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: { name: "frontEnd", key: 0 },
-      notes: {
-        frontEnd: [
-          {
-            header: "Fundamentals",
-            list: ["Item 1", "Item 2"]
-          },
-          {
-            header: "React",
-            list: ["Re", "Act"]
-          }
-        ],
-        backEnd: [
-          {
-            header: "Node.js",
-            list: ["Item 1", "Item 2"]
-          }
-        ],
-        database: [
-          {
-            header: "DBeaver",
-            list: ["Item 1", "Item 2"]
-          }
-        ],
-        misc: [
-          {
-            header: "AAAAAA",
-            list: ["AAAAAA"]
-          }
-        ]
-      }
+      notes: [],
+      subcategories: [],
+      activeTab: {
+        name: "",
+        key: 1
+      },
+      activeNotes: []
     };
   }
 
+  componentDidMount() {
+    fetch(`${config.API_ENDPOINT}/api/notes`, {
+      headers: {
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(res => {
+        this.setState({ notes: res });
+      });
+
+    fetch(`${config.API_ENDPOINT}/api/subcategories`, {
+      headers: {
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(res => {
+        this.setState({ subcategories: res });
+      });
+  }
+
   handleActiveTab = (tab, idx) => {
-    if (tab === "Front-End") {
-      this.setState({ activeTab: { name: "frontEnd", key: idx } });
-    } else if (tab === "Back-End") {
-      this.setState({ activeTab: { name: "backEnd", key: idx } });
-    } else if (tab === "Database") {
-      this.setState({ activeTab: { name: "database", key: idx } });
-    } else {
-      this.setState({ activeTab: { name: "misc", key: idx } });
-    }
-    // this.setState({ activeTab: { name: tab, key: idx } });
+    this.setState({ activeTab: { name: tab, key: idx + 1 } });
   };
+
+  handleActiveNotes(notes) {
+    this.state.notes.map(note => {
+      if (note.category_id === this.state.activeTab.key) {
+        this.setState({ activeNotes: [...this.state.activeNotes], note });
+      }
+    });
+  }
 
   addNote = note => {
     this.setState({
@@ -68,10 +78,9 @@ class App extends React.Component {
   };
 
   render() {
-    const test = "activeTab";
-    console.log(this.state[test]);
     const value = {
       notes: this.state.notes,
+      subcategories: this.state.subcategories,
       handleActiveTab: this.handleActiveTab,
       activeTab: this.state.activeTab
       // frontEndNotes: Object.values(this.state.notes[0]),
