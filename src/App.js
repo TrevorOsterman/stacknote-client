@@ -16,10 +16,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       notes: [],
+      subcategories: [],
       activeTab: {
         name: "",
         key: 1
-      }
+      },
+      activeNotes: []
     };
   }
 
@@ -39,11 +41,35 @@ class App extends React.Component {
       .then(res => {
         this.setState({ notes: res });
       });
+
+    fetch(`${config.API_ENDPOINT}/api/subcategories`, {
+      headers: {
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*"
+      }
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(res.status);
+        }
+        return res.json();
+      })
+      .then(res => {
+        this.setState({ subcategories: res });
+      });
   }
 
   handleActiveTab = (tab, idx) => {
     this.setState({ activeTab: { name: tab, key: idx + 1 } });
   };
+
+  handleActiveNotes(notes) {
+    this.state.notes.map(note => {
+      if (note.category_id === this.state.activeTab.key) {
+        this.setState({ activeNotes: [...this.state.activeNotes], note });
+      }
+    });
+  }
 
   addNote = note => {
     this.setState({
@@ -52,10 +78,9 @@ class App extends React.Component {
   };
 
   render() {
-    const test = "activeTab";
-    console.log(this.state[test]);
     const value = {
       notes: this.state.notes,
+      subcategories: this.state.subcategories,
       handleActiveTab: this.handleActiveTab,
       activeTab: this.state.activeTab
       // frontEndNotes: Object.values(this.state.notes[0]),
