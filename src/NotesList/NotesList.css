@@ -1,17 +1,23 @@
 .note-headers {
   padding: 0 5%;
+  list-style-position: inside;
 }
 
 .note-header {
   padding: 10px 0;
   font-size: 30px;
   font-weight: bold;
+  list-style-type: "+";
 }
 
 .note {
   font-size: 18px;
   font-weight: lighter;
   padding: 5px;
+}
+
+.note > span {
+  padding-left: 10px;
 }
 
 .add-new {

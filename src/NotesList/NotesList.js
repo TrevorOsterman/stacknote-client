@@ -31,24 +31,14 @@ export default class NotesList extends React.Component {
   render() {
     const active = this.context.activeTab.key;
     const notesList = this.context.notes;
-    const activeNotes = [];
-    console.log(active);
+    const subsList = this.context.subcategories;
+    console.log(subsList);
     console.log(notesList);
     return (
       <div className="note-headers">
-        {notesList.map((note, idx) => {
-          if (note.category_id === active) {
-            activeNotes.push(note);
-
-            return (
-              <Section
-                section={note.subcategory_name}
-                index={note.subcategory_id}
-                content={note.content}
-              />
-            );
-
-            console.log(activeNotes);
+        {subsList.map(sub => {
+          if (sub.category_id === active) {
+            return <Section section={sub.subcategory_name} index={sub.id} />;
           }
         })}
         <span>

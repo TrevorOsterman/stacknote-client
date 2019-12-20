@@ -16,7 +16,11 @@ export default class Section extends React.Component {
           {this.props.section}
           {notesList.map(note => {
             if (note.subcategory_id === this.props.index) {
-              return <li>{note.content}</li>;
+              return (
+                <li className="note">
+                  <span>{note.content}</span>
+                </li>
+              );
             }
           })}
         </ul>
