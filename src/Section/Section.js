@@ -1,6 +1,7 @@
 import React from "react";
 import Context from "../Context";
 import config from "../config.js";
+import "./Section.css";
 
 export default class Section extends React.Component {
   static contextType = Context;
@@ -37,6 +38,22 @@ export default class Section extends React.Component {
       .then(this.context.rerender);
   }
 
+  deleteNote(noteId) {
+    const options = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" }
+    };
+
+    fetch(`${config.API_ENDPOINT}/api/notes/${noteId}`, options)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Could not delete");
+        }
+        return res;
+      })
+      .then(this.context.rerender);
+  }
+
   render() {
     const notesList = this.context.notes;
     return (
@@ -48,6 +65,7 @@ export default class Section extends React.Component {
               return (
                 <li className="note">
                   <span>{note.content}</span>
+                  <button onClick={() => this.deleteNote(note.id)}>x</button>
                 </li>
               );
             }

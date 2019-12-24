@@ -1,0 +1,10 @@
+li > button {
+  display: none;
+}
+
+li:hover button {
+  display: inline-flex;
+}
+
+.note:first-child {
+}
