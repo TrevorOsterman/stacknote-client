@@ -25,7 +25,7 @@ class App extends React.Component {
     };
   }
 
-  componentDidMount() {
+  rerender = () => {
     fetch(`${config.API_ENDPOINT}/api/notes`, {
       headers: {
         "content-type": "application/json",
@@ -57,6 +57,10 @@ class App extends React.Component {
       .then(res => {
         this.setState({ subcategories: res });
       });
+  };
+
+  componentDidMount() {
+    this.rerender();
   }
 
   handleActiveTab = (tab, idx) => {
@@ -82,7 +86,8 @@ class App extends React.Component {
       notes: this.state.notes,
       subcategories: this.state.subcategories,
       handleActiveTab: this.handleActiveTab,
-      activeTab: this.state.activeTab
+      activeTab: this.state.activeTab,
+      rerender: this.rerender
       // frontEndNotes: Object.values(this.state.notes[0]),
       // backEndNotes: Object.values(this.state.notes[1]),
       // databaseNotes: Object.values(this.state.notes[1]),
