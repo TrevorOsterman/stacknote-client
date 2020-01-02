@@ -1,5 +1,6 @@
 import React from "react";
 import Context from "../Context";
+import Modal from "../Modal/Modal";
 import config from "../config.js";
 import "./Section.css";
 
@@ -54,12 +55,35 @@ export default class Section extends React.Component {
       .then(this.context.rerender);
   }
 
+  deleteSection(sectionId) {
+    const options = {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" }
+    };
+
+    fetch(`${config.API_ENDPOINT}/api/subcategories/${sectionId}`, options)
+      .then(res => {
+        if (!res.ok) {
+          throw new Error("Could not delete");
+        }
+        return res;
+      })
+      .then(this.context.rerender);
+  }
+
   render() {
     const notesList = this.context.notes;
     return (
       <div>
         <ul className="note-header">
           {this.props.section}
+          <button onClick={this.context.handleModal}>e</button>
+          {this.context.modal && (
+            <Modal kind="Section" title={this.props.section} />
+          )}
+          <button onClick={() => this.deleteSection(this.props.index)}>
+            x
+          </button>
           {notesList.map(note => {
             if (note.subcategory_id === this.props.index) {
               return (

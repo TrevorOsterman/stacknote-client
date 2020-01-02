@@ -2,6 +2,7 @@ import React from "react";
 import "./NotesList.css";
 import Context from "../Context.js";
 import Section from "../Section/Section";
+import Modal from "../Modal/Modal";
 
 export default class NotesList extends React.Component {
   static contextType = Context;
@@ -9,13 +10,17 @@ export default class NotesList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeNotes: this.props.notes
+      activeNotes: this.props.notes,
+      modal: false
     };
   }
+
+  handleModal = () => {};
 
   componentDidMount() {
     const notes = this.props.notes;
     const activeCategory = this.props.activeTab;
+    this.setState({ modal: this.context.HandleModal });
 
     notes.map(note => {
       if (note.category_id === activeCategory) {
@@ -40,8 +45,11 @@ export default class NotesList extends React.Component {
           }
         })}
         <span>
-          <b>+ Create new section</b>
+          <b onClick={this.context.handleModal}>+ Create new section</b>
         </span>
+        {this.context.modal && (
+          <Modal submit={this.context.handleModal} kind={"Section"} />
+        )}
       </div>
     );
   }

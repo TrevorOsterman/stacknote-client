@@ -21,7 +21,8 @@ class App extends React.Component {
         name: "",
         key: 1
       },
-      activeNotes: []
+      activeNotes: [],
+      modal: false
     };
   }
 
@@ -67,6 +68,14 @@ class App extends React.Component {
     this.setState({ activeTab: { name: tab, key: idx + 1 } });
   };
 
+  handleModal = () => {
+    if (this.state.modal === false) {
+      this.setState({ modal: true });
+    } else {
+      this.setState({ modal: false });
+    }
+  };
+
   handleActiveNotes(notes) {
     this.state.notes.map(note => {
       if (note.category_id === this.state.activeTab.key) {
@@ -87,7 +96,9 @@ class App extends React.Component {
       subcategories: this.state.subcategories,
       handleActiveTab: this.handleActiveTab,
       activeTab: this.state.activeTab,
-      rerender: this.rerender
+      rerender: this.rerender,
+      handleModal: this.handleModal,
+      modal: this.state.modal
       // frontEndNotes: Object.values(this.state.notes[0]),
       // backEndNotes: Object.values(this.state.notes[1]),
       // databaseNotes: Object.values(this.state.notes[1]),
