@@ -77,12 +77,12 @@ export default class Section extends React.Component {
       <div>
         <ul className="note-header">
           {this.props.section}
-          <button onClick={this.context.handleModal}>e</button>
+          <button onClick={this.context.handleModal}>edit</button>
           {this.context.modal && (
             <Modal kind="Section" title={this.props.section} />
           )}
           <button onClick={() => this.deleteSection(this.props.index)}>
-            x
+            delete
           </button>
           {notesList.map(note => {
             if (note.subcategory_id === this.props.index) {

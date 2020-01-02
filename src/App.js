@@ -5,9 +5,10 @@ import Nav from "./Nav/Nav";
 import Logo from "./Logo/Logo";
 import Notes from "./Notes/Notes";
 import Lander from "./Lander/Lander";
-import Questions from "./Questions/Questions";
+import About from "./About/About";
+
 import Resources from "./Resources/Resources";
-import Login from "./Login/Login";
+
 import Context from "./Context";
 import config from "./config.js";
 
@@ -111,9 +112,7 @@ class App extends React.Component {
         <Context.Provider value={value}>
           <Route exact path="/" component={Lander} />
           <Route path="/notes" component={Notes} />
-          <Route path="/questions" component={Questions} />
-          <Route path="/resources" component={Resources} />
-          <Route path="/login" component={Login} />
+          <Route path="/about" component={About} />
         </Context.Provider>
       </div>
     );

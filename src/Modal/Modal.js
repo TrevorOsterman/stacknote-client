@@ -5,6 +5,7 @@ import config from "../config.js";
 
 export default class Modal extends React.Component {
   static contextType = Context;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -38,6 +39,16 @@ export default class Modal extends React.Component {
       .then(this.context.rerender);
   }
 
+  handleCancel(e) {
+    e.preventDefault();
+    this.setState({ name: "" });
+    this.context.handleModal();
+  }
+
+  componentDidMount(props) {
+    this.setState({ name: this.props.title });
+  }
+
   render() {
     return (
       <div className="modal">
@@ -48,7 +59,8 @@ export default class Modal extends React.Component {
             value={this.state.name}
             onChange={e => this.setState({ name: e.target.value })}
           />
-          <button onClick={e => this.handleSubmit(e)} />
+          <button onClick={e => this.handleSubmit(e)}>submit</button>
+          <button onClick={e => this.handleCancel(e)}>cancel</button>
         </form>
       </div>
     );
