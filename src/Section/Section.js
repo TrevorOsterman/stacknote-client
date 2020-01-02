@@ -79,7 +79,11 @@ export default class Section extends React.Component {
           {this.props.section}
           <button onClick={this.context.handleModal}>edit</button>
           {this.context.modal && (
-            <Modal kind="Section" title={this.props.section} />
+            <Modal
+              kind="Section"
+              title={this.props.section}
+              subId={this.props.index}
+            />
           )}
           <button onClick={() => this.deleteSection(this.props.index)}>
             delete

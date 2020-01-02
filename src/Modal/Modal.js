@@ -53,7 +53,7 @@ export default class Modal extends React.Component {
     return (
       <div className="modal">
         <form className="modal-main">
-          <label>{this.props.kind} Title:</label>
+          <label className="modal-label">{this.props.kind} Title:</label>
           <input
             type="text"
             value={this.state.name}

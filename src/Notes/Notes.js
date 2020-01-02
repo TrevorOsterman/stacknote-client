@@ -2,6 +2,7 @@ import React from "react";
 import NoteNav from "../NoteNav/NoteNav";
 import NotesList from "../NotesList/NotesList";
 import Context from "../Context";
+import "./Notes.css";
 
 export default class Notes extends React.Component {
   static contextType = Context;
