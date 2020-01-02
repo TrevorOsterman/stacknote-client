@@ -1,6 +1,6 @@
 import React from "react";
 import Context from "../Context";
-import Modal from "../Modal/Modal";
+import EditModal from "../Modal/EditModal";
 import config from "../config.js";
 import "./Section.css";
 
@@ -71,20 +71,27 @@ export default class Section extends React.Component {
       .then(this.context.rerender);
   }
 
+  handleEdit(sub) {
+    this.context.editModal(sub);
+  }
+
   render() {
     const notesList = this.context.notes;
     return (
       <div>
         <ul className="note-header">
           {this.props.section}
-          <button onClick={this.context.handleModal}>edit</button>
-          {this.context.modal && (
-            <Modal
-              kind="Section"
-              title={this.props.section}
-              subId={this.props.index}
-            />
-          )}
+          <button onClick={() => this.handleEdit(this.props.index)}>
+            edit
+          </button>
+          {this.context.modal.shown &&
+            this.context.modal.subId === this.props.index && (
+              <EditModal
+                kind="Section"
+                title={this.props.section}
+                subId={this.props.index}
+              />
+            )}
           <button onClick={() => this.deleteSection(this.props.index)}>
             delete
           </button>

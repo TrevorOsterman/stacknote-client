@@ -20,6 +20,11 @@
   transform: translate(-50%, -50%);
 }
 
+.modal-main:first-child {
+  display: block;
+}
+
 .modal-label {
   height: 20px;
+  font-size: 20px;
 }

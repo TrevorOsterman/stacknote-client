@@ -3,7 +3,7 @@ import Context from "../Context.js";
 import "./Modal.css";
 import config from "../config.js";
 
-export default class Modal extends React.Component {
+export default class EditModal extends React.Component {
   static contextType = Context;
 
   constructor(props) {
@@ -21,14 +21,17 @@ export default class Modal extends React.Component {
     };
     console.log(subcategory);
     const options = {
-      method: "POST",
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(subcategory)
     };
 
-    fetch(`${config.API_ENDPOINT}/api/subcategories`, options)
+    fetch(
+      `${config.API_ENDPOINT}/api/subcategories/${this.props.subId}`,
+      options
+    )
       .then(res => {
         if (!res.ok) {
           throw new Error("Something went wrong");

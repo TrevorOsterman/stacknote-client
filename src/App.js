@@ -23,7 +23,7 @@ class App extends React.Component {
         key: 1
       },
       activeNotes: [],
-      modal: false
+      modal: { shown: false, subId: "" }
     };
   }
 
@@ -57,7 +57,7 @@ class App extends React.Component {
         return res.json();
       })
       .then(res => {
-        this.setState({ subcategories: res });
+        this.setState({ subcategories: res.sort((a, b) => a.id - b.id) });
       });
   };
 
@@ -70,10 +70,16 @@ class App extends React.Component {
   };
 
   handleModal = () => {
-    if (this.state.modal === false) {
-      this.setState({ modal: true });
+    if (this.state.modal.shown === false) {
+      this.setState({ modal: { shown: true } });
     } else {
-      this.setState({ modal: false });
+      this.setState({ modal: { shown: false } });
+    }
+  };
+
+  editModal = sub => {
+    if (this.state.modal.shown === false) {
+      this.setState({ modal: { shown: true, subId: sub } });
     }
   };
 
@@ -99,6 +105,7 @@ class App extends React.Component {
       activeTab: this.state.activeTab,
       rerender: this.rerender,
       handleModal: this.handleModal,
+      editModal: this.editModal,
       modal: this.state.modal
       // frontEndNotes: Object.values(this.state.notes[0]),
       // backEndNotes: Object.values(this.state.notes[1]),
