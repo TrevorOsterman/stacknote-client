@@ -21,11 +21,12 @@ class App extends React.Component {
         name: "",
         key: 1
       },
-      activeNotes: []
+      activeNotes: [],
+      modal: false
     };
   }
 
-  componentDidMount() {
+  rerender = () => {
     fetch(`${config.API_ENDPOINT}/api/notes`, {
       headers: {
         "content-type": "application/json",
@@ -57,10 +58,22 @@ class App extends React.Component {
       .then(res => {
         this.setState({ subcategories: res });
       });
+  };
+
+  componentDidMount() {
+    this.rerender();
   }
 
   handleActiveTab = (tab, idx) => {
     this.setState({ activeTab: { name: tab, key: idx + 1 } });
+  };
+
+  handleModal = () => {
+    if (this.state.modal === false) {
+      this.setState({ modal: true });
+    } else {
+      this.setState({ modal: false });
+    }
   };
 
   handleActiveNotes(notes) {
@@ -82,7 +95,10 @@ class App extends React.Component {
       notes: this.state.notes,
       subcategories: this.state.subcategories,
       handleActiveTab: this.handleActiveTab,
-      activeTab: this.state.activeTab
+      activeTab: this.state.activeTab,
+      rerender: this.rerender,
+      handleModal: this.handleModal,
+      modal: this.state.modal
       // frontEndNotes: Object.values(this.state.notes[0]),
       // backEndNotes: Object.values(this.state.notes[1]),
       // databaseNotes: Object.values(this.state.notes[1]),
