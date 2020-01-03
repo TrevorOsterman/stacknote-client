@@ -5,9 +5,10 @@ import Nav from "./Nav/Nav";
 import Logo from "./Logo/Logo";
 import Notes from "./Notes/Notes";
 import Lander from "./Lander/Lander";
-import Questions from "./Questions/Questions";
+import About from "./About/About";
+
 import Resources from "./Resources/Resources";
-import Login from "./Login/Login";
+
 import Context from "./Context";
 import config from "./config.js";
 
@@ -22,7 +23,7 @@ class App extends React.Component {
         key: 1
       },
       activeNotes: [],
-      modal: false
+      modal: { shown: false, subId: "" }
     };
   }
 
@@ -40,7 +41,7 @@ class App extends React.Component {
         return res.json();
       })
       .then(res => {
-        this.setState({ notes: res });
+        this.setState({ notes: res.sort((a, b) => a.id - b.id) });
       });
 
     fetch(`${config.API_ENDPOINT}/api/subcategories`, {
@@ -56,7 +57,7 @@ class App extends React.Component {
         return res.json();
       })
       .then(res => {
-        this.setState({ subcategories: res });
+        this.setState({ subcategories: res.sort((a, b) => a.id - b.id) });
       });
   };
 
@@ -69,10 +70,16 @@ class App extends React.Component {
   };
 
   handleModal = () => {
-    if (this.state.modal === false) {
-      this.setState({ modal: true });
+    if (this.state.modal.shown === false) {
+      this.setState({ modal: { shown: true } });
     } else {
-      this.setState({ modal: false });
+      this.setState({ modal: { shown: false } });
+    }
+  };
+
+  editModal = sub => {
+    if (this.state.modal.shown === false) {
+      this.setState({ modal: { shown: true, subId: sub } });
     }
   };
 
@@ -98,6 +105,7 @@ class App extends React.Component {
       activeTab: this.state.activeTab,
       rerender: this.rerender,
       handleModal: this.handleModal,
+      editModal: this.editModal,
       modal: this.state.modal
       // frontEndNotes: Object.values(this.state.notes[0]),
       // backEndNotes: Object.values(this.state.notes[1]),
@@ -111,9 +119,7 @@ class App extends React.Component {
         <Context.Provider value={value}>
           <Route exact path="/" component={Lander} />
           <Route path="/notes" component={Notes} />
-          <Route path="/questions" component={Questions} />
-          <Route path="/resources" component={Resources} />
-          <Route path="/login" component={Login} />
+          <Route path="/about" component={About} />
         </Context.Provider>
       </div>
     );

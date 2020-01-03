@@ -2,7 +2,7 @@ import React from "react";
 import "./NotesList.css";
 import Context from "../Context.js";
 import Section from "../Section/Section";
-import Modal from "../Modal/Modal";
+import NewModal from "../Modal/NewModal";
 
 export default class NotesList extends React.Component {
   static contextType = Context;
@@ -47,8 +47,8 @@ export default class NotesList extends React.Component {
         <span>
           <b onClick={this.context.handleModal}>+ Create new section</b>
         </span>
-        {this.context.modal && (
-          <Modal submit={this.context.handleModal} kind={"Section"} />
+        {this.context.modal.shown && !this.context.modal.subId && (
+          <NewModal submit={this.context.handleModal} kind={"Section"} />
         )}
       </div>
     );

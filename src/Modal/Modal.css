@@ -9,12 +9,22 @@
 
 .modal-main {
   text-align: center;
-
   position: fixed;
+  display: flex;
+  flex-direction: column;
   background: white;
   width: 25%;
   height: 25%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.modal-main:first-child {
+  display: block;
+}
+
+.modal-label {
+  height: 20px;
+  font-size: 20px;
 }

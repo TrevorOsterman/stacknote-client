@@ -8,12 +8,8 @@ export default function Nav() {
     <nav className="navigation">
       <div className="hamburg-menu">
         <Link to="/notes">Notes</Link>
-        <Link to="/questions">Questions</Link>
-        <Link to="/resources">Resources</Link>
+        <Link to="/about">About</Link>
       </div>
-      <Link className="login-link" to="/login">
-        Login
-      </Link>
     </nav>
   );
 }
