@@ -41,7 +41,9 @@ class App extends React.Component {
         return res.json();
       })
       .then(res => {
-        this.setState({ notes: res.sort((a, b) => a.id - b.id) });
+        this.setState({
+          notes: res
+        });
       });
 
     fetch(`${config.API_ENDPOINT}/api/subcategories`, {
@@ -57,7 +59,9 @@ class App extends React.Component {
         return res.json();
       })
       .then(res => {
-        this.setState({ subcategories: res.sort((a, b) => a.id - b.id) });
+        this.setState({
+          subcategories: res
+        });
       });
   };
 
