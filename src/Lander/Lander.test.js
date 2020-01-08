@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import Lander from "./Lander";
 import { MemoryRouter } from "react-router-dom";
 
 describe("App component", () => {
@@ -8,7 +8,7 @@ describe("App component", () => {
     const div = document.createElement("div");
     ReactDOM.render(
       <MemoryRouter>
-        <App />
+        <Lander />
       </MemoryRouter>,
       div
     );
