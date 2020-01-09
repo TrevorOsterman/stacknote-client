@@ -25,7 +25,6 @@ export default class NewModal extends React.Component {
       subcategory_name: this.state.name,
       category_id: this.context.activeTab.key
     };
-    console.log(subcategory);
     const options = {
       method: "POST",
       headers: {

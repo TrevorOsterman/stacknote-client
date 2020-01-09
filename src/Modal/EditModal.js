@@ -25,7 +25,7 @@ export default class EditModal extends React.Component {
       subcategory_name: this.state.name,
       category_id: this.context.activeTab.key
     };
-    console.log(subcategory);
+
     const options = {
       method: "PATCH",
       headers: {
