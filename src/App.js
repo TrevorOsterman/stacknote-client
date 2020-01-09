@@ -6,9 +6,7 @@ import Logo from "./Logo/Logo";
 import Notes from "./Notes/Notes";
 import Lander from "./Lander/Lander";
 import About from "./About/About";
-
 import Resources from "./Resources/Resources";
-
 import Context from "./Context";
 import config from "./config.js";
 
