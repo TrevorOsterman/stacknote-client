@@ -9,8 +9,14 @@ export default class NewModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: this.props.title
+      name: ""
     };
+  }
+
+  validateInput() {
+    if (this.state.name === "") {
+      return `* Field cannot be empty`;
+    }
   }
 
   handleSubmit(e) {
@@ -46,7 +52,7 @@ export default class NewModal extends React.Component {
   }
 
   componentDidMount(props) {
-    this.setState({ name: this.props.title });
+    this.setState({ name: "" });
   }
 
   render() {
@@ -59,7 +65,12 @@ export default class NewModal extends React.Component {
             value={this.state.name}
             onChange={e => this.setState({ name: e.target.value })}
           />
-          <button onClick={e => this.handleSubmit(e)}>submit</button>
+          <button
+            onClick={e => this.handleSubmit(e)}
+            disabled={this.validateInput()}
+          >
+            submit
+          </button>
           <button onClick={e => this.handleCancel(e)}>cancel</button>
         </form>
       </div>
