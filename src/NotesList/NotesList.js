@@ -15,6 +15,10 @@ export default class NotesList extends React.Component {
     };
   }
 
+  static defaultProps = {
+    notes: []
+  };
+
   handleModal = () => {};
 
   componentDidMount() {

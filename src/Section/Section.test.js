@@ -2,13 +2,26 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Section from "./Section";
 import { MemoryRouter } from "react-router-dom";
+import Context from "../Context";
 
 describe("App component", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
+    const value = {
+      notes: [],
+      subcategories: [],
+      activeTab: {
+        name: "",
+        key: 1
+      },
+      activeNotes: [],
+      modal: { shown: false, subId: "" }
+    };
     ReactDOM.render(
       <MemoryRouter>
-        <Section />
+        <Context.Provider value={value}>
+          <Section />
+        </Context.Provider>
       </MemoryRouter>,
       div
     );
