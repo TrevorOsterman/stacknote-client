@@ -109,10 +109,6 @@ class App extends React.Component {
       handleModal: this.handleModal,
       editModal: this.editModal,
       modal: this.state.modal
-      // frontEndNotes: Object.values(this.state.notes[0]),
-      // backEndNotes: Object.values(this.state.notes[1]),
-      // databaseNotes: Object.values(this.state.notes[1]),
-      // miscNotes: Object.values(this.state.notes[2])
     };
     return (
       <div className="App">
