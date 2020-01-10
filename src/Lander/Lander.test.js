@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Lander from "./Lander";
 import { MemoryRouter } from "react-router-dom";
 
-describe("App component", () => {
+describe("Lander component", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(

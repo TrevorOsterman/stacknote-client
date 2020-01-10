@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import Logo from "./Logo";
 import { MemoryRouter } from "react-router-dom";
 
-describe("App component", () => {
+describe("Logo component", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
     ReactDOM.render(

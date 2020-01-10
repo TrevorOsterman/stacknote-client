@@ -4,7 +4,7 @@ import NotesList from "./NotesList";
 import { MemoryRouter } from "react-router-dom";
 import Context from "../Context.js";
 
-describe("App component", () => {
+describe("NotesList component", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
     const value = {

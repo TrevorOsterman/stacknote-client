@@ -4,7 +4,7 @@ import Notes from "./Notes";
 import { MemoryRouter } from "react-router-dom";
 import Context from "../Context";
 
-describe("App component", () => {
+describe("Notes component", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
     const value = {

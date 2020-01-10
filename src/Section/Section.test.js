@@ -4,7 +4,7 @@ import Section from "./Section";
 import { MemoryRouter } from "react-router-dom";
 import Context from "../Context";
 
-describe("App component", () => {
+describe("Section component", () => {
   it("renders without crashing", () => {
     const div = document.createElement("div");
     const value = {
