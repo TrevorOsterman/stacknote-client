@@ -4,7 +4,34 @@ li > button {
 
 li:hover button {
   display: inline-flex;
+  float: right;
 }
 
-.note:first-child {
+.note-header {
+  padding: 15px 15px;
+}
+
+.buttons > button {
+  padding: 2px;
+  margin: 10px;
+  border: none;
+}
+
+.buttons {
+  float: right;
+  clear: left;
+}
+
+.new-note-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-button {
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }

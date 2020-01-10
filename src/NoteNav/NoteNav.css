@@ -6,10 +6,12 @@
   padding: 0 5%;
   margin: 0;
   flex-wrap: wrap;
+  font-weight: bold;
 }
 
 .note-type {
   font-size: 20px;
+  padding: 5px 15px;
 }
 
 .note-type:hover {

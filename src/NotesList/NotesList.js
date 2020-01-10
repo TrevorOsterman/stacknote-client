@@ -49,7 +49,9 @@ export default class NotesList extends React.Component {
           }
         })}
         <span>
-          <b onClick={this.context.handleModal}>+ Create new section</b>
+          <b className="create-new" onClick={this.context.handleModal}>
+            + Create new section
+          </b>
         </span>
         {this.context.modal.shown && !this.context.modal.subId && (
           <NewModal submit={this.context.handleModal} kind={"Section"} />

@@ -5,6 +5,7 @@
   margin: 5%;
   letter-spacing: -3px;
   border-bottom: 10px black dashed;
+  padding: 10px 10px;
 }
 
 @media only screen and (min-width: 666px) {

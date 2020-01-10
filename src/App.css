@@ -4,10 +4,35 @@
 
 body {
   font-family: "Source Code Pro", monospace;
+  background: url(https://previews.123rf.com/images/creatorsclub/creatorsclub1611/creatorsclub161100259/66371499-pattern-seamless-simple-background-fashion-80-90s-black-and-white-texture.jpg);
+  background-size: 150px;
+}
+
+.section,
+.logo,
+.create-new,
+.about-section > p,
+.lander > p,
+.lander > a {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.note-type,
+.note-nav {
+  background-color: rgba(255, 255, 255, 0.55);
 }
 
 a {
   color: black;
+}
+
+.create-new {
+  padding: 5px;
+}
+
+.create-new:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /* nav {

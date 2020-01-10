@@ -16,3 +16,8 @@
   flex-direction: column;
   flex-wrap: wrap;
 }
+
+.about-section > p {
+  padding: 10px;
+  font-size: 20px;
+}

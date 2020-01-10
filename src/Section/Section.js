@@ -78,10 +78,12 @@ export default class Section extends React.Component {
   render() {
     const notesList = this.context.notes;
     return (
-      <div>
-        <ul className="note-header">
-          {this.props.section}
-          <button onClick={() => this.handleEdit(this.props.index)}>
+      <div className="section">
+        <div className="buttons">
+          <button
+            className="header-button"
+            onClick={() => this.handleEdit(this.props.index)}
+          >
             edit
           </button>
           {this.context.modal.shown &&
@@ -92,27 +94,50 @@ export default class Section extends React.Component {
                 subId={this.props.index}
               />
             )}
-          <button onClick={() => this.deleteSection(this.props.index)}>
+          <button
+            className="header-button"
+            onClick={() => this.deleteSection(this.props.index)}
+          >
             delete
           </button>
+        </div>
+        <ul className="note-header">
+          {this.props.section}
+
           {notesList.map(note => {
             if (note.subcategory_id === this.props.index) {
               return (
                 <li className="note">
                   <span>{note.content}</span>
-                  <button onClick={() => this.deleteNote(note.id)}>x</button>
+                  <button
+                    className="delete-button"
+                    onClick={() => this.deleteNote(note.id)}
+                  >
+                    x
+                  </button>
                 </li>
               );
             }
           })}
+          <div className="new-note-section">
+            <div className="input-field">
+              <span className="plus-symbol">+</span>
+              <input
+                className="note-input"
+                type="text"
+                placeholder="new note"
+                value={this.state.newNote}
+                onChange={e => this.setState({ newNote: e.target.value })}
+              />
+            </div>
+            <button
+              className="add-button"
+              onClick={() => this.createNote(this.props.index)}
+            >
+              add
+            </button>
+          </div>
         </ul>
-        <input
-          type="text"
-          placeholder="new note"
-          value={this.state.newNote}
-          onChange={e => this.setState({ newNote: e.target.value })}
-        />
-        <button onClick={() => this.createNote(this.props.index)} />
       </div>
     );
   }
