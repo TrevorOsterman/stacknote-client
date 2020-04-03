@@ -2,5 +2,11 @@
   text-align: center;
   padding: 0 10%;
   padding-bottom: 10%;
-  font-size: 18px;
+  font-size: 27px;
+}
+
+@media only screen and (max-width: 1000px) {
+  .lander {
+    font-size: 20px;
+  }
 }
