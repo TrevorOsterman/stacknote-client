@@ -3,6 +3,7 @@ import "./NotesList.css";
 import Context from "../Context.js";
 import Section from "../Section/Section";
 import NewModal from "../Modal/NewModal";
+import LoadingPage from '../LoadingPage/LoadingPage';
 
 export default class NotesList extends React.Component {
   static contextType = Context;
@@ -11,12 +12,12 @@ export default class NotesList extends React.Component {
     super(props);
     this.state = {
       activeNotes: this.props.notes,
-      modal: false
+      modal: false,
     };
   }
 
   static defaultProps = {
-    notes: []
+    notes: [],
   };
 
   handleModal = () => {};
@@ -26,11 +27,11 @@ export default class NotesList extends React.Component {
     const activeCategory = this.props.activeTab;
     this.setState({ modal: this.context.HandleModal });
 
-    notes.map(note => {
+    notes.map((note) => {
       if (note.category_id === activeCategory) {
         this.setState({
           activeNotes: [...this.state.activeNotes],
-          note
+          note,
         });
       }
     });
@@ -41,22 +42,26 @@ export default class NotesList extends React.Component {
     const notesList = this.context.notes;
     const subsList = this.context.subcategories;
 
-    return (
-      <div className="note-headers">
-        {subsList.map(sub => {
-          if (sub.category_id === active) {
-            return <Section section={sub.subcategory_name} index={sub.id} />;
-          }
-        })}
-        <span>
-          <b className="create-new" onClick={this.context.handleModal}>
-            + Create new section
-          </b>
-        </span>
-        {this.context.modal.shown && !this.context.modal.subId && (
-          <NewModal submit={this.context.handleModal} kind={"Section"} />
-        )}
-      </div>
-    );
+    if (this.context.dataLoaded === false) {
+      return <LoadingPage />;
+    } else {
+      return (
+        <div className="note-headers">
+          {subsList.map((sub) => {
+            if (sub.category_id === active) {
+              return <Section section={sub.subcategory_name} index={sub.id} />;
+            }
+          })}
+          <span>
+            <b className="create-new" onClick={this.context.handleModal}>
+              + Create new section
+            </b>
+          </span>
+          {this.context.modal.shown && !this.context.modal.subId && (
+            <NewModal submit={this.context.handleModal} kind={"Section"} />
+          )}
+        </div>
+      );
+    }
   }
 }

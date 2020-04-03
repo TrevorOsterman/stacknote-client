@@ -15,6 +15,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       notes: [],
+      dataLoaded: false,
       subcategories: [],
       activeTab: {
         name: "",
@@ -58,7 +59,8 @@ class App extends React.Component {
       })
       .then(res => {
         this.setState({
-          subcategories: res
+          subcategories: res,
+          dataLoaded: true
         });
       });
   };
@@ -108,7 +110,8 @@ class App extends React.Component {
       rerender: this.rerender,
       handleModal: this.handleModal,
       editModal: this.editModal,
-      modal: this.state.modal
+      modal: this.state.modal,
+      dataLoaded: this.state.dataLoaded
     };
     return (
       <div className="App">
